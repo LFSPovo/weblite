@@ -22,7 +22,7 @@ class Dispatcher {
 
 		# Run 'before' method if exists before any other code
 		if (method_exists($controller, 'before'))
-			$controller->{'before'}();
+			$controller->before();
 
 		# Finally call the controller method
 		$controller->{$this->_method}();
