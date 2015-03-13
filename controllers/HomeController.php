@@ -1,9 +1,5 @@
 <?php
-class HomeController {
-	public function before() {
-		
-	}
-	
+class HomeController {	
 	public function index() {
 		$user = UserModel::get(2);
 		$view = new View('home');
