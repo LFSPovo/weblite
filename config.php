@@ -1,4 +1,6 @@
 <?php
+$config['view_path'] = BASEDIR.'views/';
+
 $config['database']['host'] = 'localhost';
 $config['database']['username'] = 'weblite';
 $config['database']['password'] = '';
