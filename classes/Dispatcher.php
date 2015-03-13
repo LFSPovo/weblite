@@ -4,7 +4,7 @@ class Dispatcher {
 	private $_method = 'index';
 	private $_args = array();
 
-	public function run() {
+	function run() {
 		$this->get_controller();
 		$this->get_method();
 

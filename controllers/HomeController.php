@@ -1,6 +1,6 @@
 <?php
 class HomeController {	
-	public function index() {
+	function index() {
 		$user = UserModel::get(2);
 		$view = new View('home');
 		$view->assign('user', $user);

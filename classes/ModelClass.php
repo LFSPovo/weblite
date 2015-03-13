@@ -23,7 +23,7 @@ class ModelClass {
 	#
 	#	Return array of all model objects
 	#
-	public static function get_all() {
+	static function get_all() {
 		# If table name isn't set, use model name as table
 		$table_name = static::$table_name;
 		if ($table_name == null)
@@ -48,7 +48,7 @@ class ModelClass {
 	#
 	#	Return model object where $col=$value
 	#
-	public static function get($value, $col = null) {
+	static function get($value, $col = null) {
 		# If table name isn't set, use model name as table
 		$table_name = static::$table_name;
 		if ($table_name == null)

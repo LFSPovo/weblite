@@ -1,6 +1,6 @@
 <?php
 class Database {
-	public static function getPDO() {
+	static function getPDO() {
 		global $config;
 		$db = null;
 		try {
