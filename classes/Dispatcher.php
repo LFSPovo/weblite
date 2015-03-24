@@ -48,6 +48,6 @@ class Dispatcher {
 
 	private function get_method() {
 		if (!empty($this->_args[0]))
-			$this->_method = $this->_args[0];
+			$this->_method = strtolower($this->_args[0]);
 	}
 }

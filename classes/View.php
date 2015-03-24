@@ -9,6 +9,7 @@ class View {
 	function __construct($name) {
 		global $config;
 		$this->viewfile = $config['view_path'].$name.'.tpl.php';
+		$this->vars['site_url'] = $config['site_url'];
 	}
 
 	#
@@ -34,7 +35,7 @@ class View {
 		foreach ($this->vars as $var => $value) {
 			${$var} = $value;
 		}
-
+		
 		# Finally show this template
 		include $this->viewfile;
 	}
