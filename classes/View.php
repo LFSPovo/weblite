@@ -10,6 +10,7 @@ class View {
 		global $config;
 		$this->viewfile = $config['view_path'].$name.'.tpl.php';
 		$this->vars['site_url'] = $config['site_url'];
+		$this->vars['date_format'] = $config['date_format'];
 	}
 
 	#

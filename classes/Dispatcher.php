@@ -8,13 +8,13 @@ class Dispatcher {
 		$this->get_controller();
 		$this->get_method();
 
-		$class = $this->_controller.'Controller';
+		$this->_controller = $this->_controller . 'Controller';
 
 		# Throw 404 if controller not found
-		if (!class_exists($class, true))
+		if (!class_exists($this->_controller, true))
 			return $this->not_found_error();
-		
-		$controller = new $class();
+
+		$controller = new $this->_controller();
 
 		# Throw 404 if requested method is not found
 		if (!method_exists($controller, $this->_method))
@@ -24,8 +24,13 @@ class Dispatcher {
 		if (method_exists($controller, 'before'))
 			$controller->before();
 
+		array_shift($this->_args);
+
 		# Finally call the controller method
-		$controller->{$this->_method}();
+		if (count($this->_args) > 0)
+			call_user_func_array(array($controller, $this->_method), $this->_args);
+		else
+			$controller->{$this->_method}();
 	}
 
 	private function not_found_error() {

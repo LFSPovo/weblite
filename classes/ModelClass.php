@@ -62,13 +62,26 @@ class ModelClass {
 
 		# Get data from DB
 		$stmt = $db->prepare("SELECT * FROM `$table_name` WHERE `$col`=:value");
+		
+		# Put rows into a caller class
+		$stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+		
 		$stmt->bindValue(':value', $value);
 		$stmt->execute();
-		
-		# Only return object if a row exists.
-		if ($stmt->rowCount() > 0)
-			return self::row2obj($stmt->fetch());
-		
-		return null;
+		if ($stmt->rowCount() == 0) return null;
+		else if ($stmt->rowCount() > 1) return $stmt->fetchAll();
+		else return $stmt->fetch();
+	}
+
+	static function delete($id) {
+		# If table name isn't set, use model name as table
+		$table_name = static::$table_name;
+		if ($table_name == null)
+			$table_name = substr($class, 0, strlen($class) - 5);
+
+		$db = Database::getPDO();
+		$stmt = $db->prepare("DELETE FROM `" . static::$table_name ."` WHERE `" . static::$primary_key . "`=:id");
+		$stmt->bindValue(':id', $id);
+		$stmt->execute();
 	}
 }

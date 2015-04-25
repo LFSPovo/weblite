@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule assets/(.*) assets/$1 [L]
+RewriteRule (.*) index.php [L] 

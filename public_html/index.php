@@ -9,6 +9,7 @@ require_once(BASEDIR.'config.php');
 require_once(BASEDIR.'classes/AutoLoader.php');
 
 date_default_timezone_set($config['timezone']);
+session_start();
 
 $dispatcher = new Dispatcher();
 $dispatcher->run();
